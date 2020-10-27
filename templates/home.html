@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>ML API</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  
+</head>
+
+<body>
+ <div class="login">
+	<h1>Patient hostpital staying time estimation</h1>
+
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}"method="post">
+      <input type="text" name="case_id" placeholder="case_id" required="required" /><br>
+    	<input type="text" name="Hospital_code" placeholder="Hospital_code" required="required" /><br>
+        <input type="text" name="Available Extra Rooms in Hospital" placeholder="Available Extra Rooms in Hospital" required="required" /><br>
+        <input type="text" name="Department" placeholder="Department" required="required" /><br>
+        <input type="text" name="Ward_Type" placeholder="Ward_Type" required="required" /><br>
+        <input type="text" name="patientid" placeholder="patientid" required="required" /><br>
+        <input type="text" name="Type of Admission" placeholder="Type of Admission" required="required" /><br>
+        <input type="text" name="Severity of Illness" placeholder="Severity of Illness" required="required" /><br>
+        <input type="text" name="Admission_Deposit" placeholder="Admission_Deposit" required="required" /><br>
+       
+
+        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    </form>
+
+   <br>
+   <br>
+  
+   
+ </div>
+ {{prediction_text}}
+
+</body>
+</html>
