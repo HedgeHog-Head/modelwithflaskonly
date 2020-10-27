@@ -81,10 +81,10 @@ def predict():
     df['Department'] = df['Department'].apply(change3)
     df['Type of Admission'] = df['Type of Admission'].apply(change4)
     flash('convert success')
-    prediction = kn.predict(df)
+    prediction1 = kn.predict(df)
     flash('predict success')
     
-    final_prediction = key_value.get(prediction)
+    final_prediction = key_value.get(prediction1[0])
     flash('return value')
     return render_template('home.html',prediction_text="Estimated staying time {}".format(final_prediction))
 
@@ -111,5 +111,7 @@ def predict_api():
 
 
 if __name__ == '__main__':
+    app.secret_key = 'super secret key'
+    app.config['SESSION_TYPE'] = 'filesystem'
     app.run(host="127.0.0.1",port=8080,debug=True)
 
