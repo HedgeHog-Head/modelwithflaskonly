@@ -2,7 +2,7 @@ import os
 import json
 import joblib
 import numpy as np
-from flask import Flask, request, jsonify, render_template, url_for
+from flask import Flask, request, jsonify, render_template, url_for, flash
 import pandas as pd
 #import sklearn.preprocessing as preprocessing
 
@@ -75,16 +75,17 @@ def predict():
     d = request.form.to_dict()
     df = pd.DataFrame([d.values()],columns=d.keys())
     df.apply(pd.to_numeric,errors='ignore')
+    flash('to_numeric success')
     df['Ward_Type'] = df['Ward_Type'].apply(change)
     df['Severity of Illness'] = df['Severity of Illness'].apply(change1)
     df['Department'] = df['Department'].apply(change3)
     df['Type of Admission'] = df['Type of Admission'].apply(change4)
-    
+    flash('convert success')
     prediction = kn.predict(df)
-    
+    flash('predict success')
     
     final_prediction = key_value.get(prediction)
-
+    flash('return value')
     return render_template('home.html',prediction_text="Estimated staying time {}".format(final_prediction))
 
 @app.route('/predict_api',methods=['POST'])
