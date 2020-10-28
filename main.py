@@ -111,7 +111,7 @@ def predict_api():
 
 @app.errorhandler(500)
 def internal_server_error(e):
-    return jsonify(error=str(e)),500
+    return jsonify(error=str(e))，500
     
 if __name__ == '__main__':
     app.secret_key = 'super secret key'
