@@ -4,11 +4,14 @@ import joblib
 import numpy as np
 from flask import Flask, request, jsonify, render_template, url_for, flash
 import pandas as pd
+import traceback
+import sys
 #import sklearn.preprocessing as preprocessing
 
 
 # The flask app for serving predictions
 app = Flask(__name__)
+app.secret_key = 'super secret key'
 kn = joblib.load(open('kn.pkl','rb'))
 
 
@@ -111,10 +114,12 @@ def predict_api():
 
 @app.errorhandler(500)
 def internal_server_error(e):
-    return jsonify(error=str(e))，500
+    print("500 error occurs")
+    etype, value, tb = sys.exc_info()
+    traceback.print_exception(etype, value, tb)
     
 if __name__ == '__main__':
-    app.secret_key = 'super secret key'
-    app.config['SESSION_TYPE'] = 'filesystem'
+    
+    #app.config['SESSION_TYPE'] = 'filesystem'
     app.run(debug=True)
 
