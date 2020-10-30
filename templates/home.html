@@ -37,7 +37,22 @@
   
    
  </div>
- {{prediction_text}}
+ 
+{% if prediction_text is defined %}
+<div id="my-modal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>Result</h2>
+    </div>
+    <div class="modal-body">
+      <p>{{prediction_text}}</p>
+    </div>
 
+  </div>
+</div>
+{% endif %}
+
+ <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>
