@@ -96,7 +96,7 @@ def predict_api():
     # for direct API calls through request
 
     json_payload = request.get_json(force=True)
-    inference_payload = pd.DataFrame(json_payload)
+    inference_payload = pd.DataFrame(json_payload, index=[0])
     inference_payload.drop(['Hospital_type_code','City_Code_Hospital','Hospital_region_code','Ward_Facility_Code','Bed Grade','City_Code_Patient','Visitors with Patient','Age'],inplace=True,axis=1)
     inference_payload['Ward_Type']=inference_payload['Ward_Type'].apply(change)
     inference_payload['Severity of Illness'] = inference_payload['Severity of Illness'].apply(change1)
@@ -104,13 +104,14 @@ def predict_api():
     inference_payload['Type of Admission'] = inference_payload['Type of Admission'].apply(change4)
 
     predict1 = kn.predict(inference_payload)
-    inference_payload['predict'] = predict1
+    #inference_payload['predict'] = predict1
+    final_prediction = key_value.get(predict1[0])
 
     
 
-    inference_payload['value'] = inference_payload.predict.replace(key_value)
-
-    return jsonify(inference_payload['value'])
+    #inference_payload['value'] = inference_payload.predict.replace(key_value)
+    return render_template('home.html',prediction_text='Estimated staying time {}'.format(final_prediction))
+    #return jsonify(inference_payload['value'])
 
 @app.errorhandler(500)
 def internal_server_error(e):
