@@ -1,5 +1,14 @@
 # modelwithflaskonly
+##Project Goals
+Predict covid-19 patients hospital staying time
+* Help doctors and nurses to analysis patient cases
+* Improve case region allocation
+* Optimize medical treatment cost
+
 ## Model Description
+k-nearest neighbors algorithm
+Input features: Ward_Type, Department, 
+                Type of Admission, Severity of Illness
 
 ## Platform
 ### Flask + Google App Engine
