@@ -1,13 +1,14 @@
 # modelwithflaskonly
-### Model Description
+## Model Description
 
-### Platform
-##### Flask + Google App Engine
-Develop a web application using Flask framework to deploy our machine learning model as a web service.
+## Platform
+### Flask + Google App Engine
+Develop a web application using Flask framework to deploy our machine learning model as a web service.</br>
 Use Google App Engine as our scalable and elastic deployment platform.
 
 * main.py: the main program file for flask app creation, model loading and prediction
 * app.yaml: configuration file for deployment of flask app
 * requirements.txt: all the packages needed for our app
 * html/css: web design with forms, buttons and animation😉
+
 
